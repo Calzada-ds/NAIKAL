@@ -1,0 +1,265 @@
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* Clases de animación */
+.animated-title {
+    animation: slideInLeft 1s ease-out;
+}
+
+.animated-image {
+    transition: transform 0.5s ease;
+    overflow: hidden;
+}
+
+.animated-image:hover {
+    transform: scale(1.05);
+}
+
+.service-card {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.service-icon {
+    animation: pulse 2s infinite;
+}
+
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.btn-primary:hover::after {
+    left: 0;
+}
+
+/* Animación para el slider de testimonios */
+.testimonial-slider {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+}
+
+.testimonial {
+    min-width: 100%;
+    transition: transform 0.5s ease;
+}
+
+/* Animación para la barra lateral */
+.sidebar {
+    transition: width 0.3s ease;
+}
+
+.sidebar-content h3, .sidebar-content ul li a span {
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .sidebar-content h3, 
+.sidebar:hover .sidebar-content ul li a span {
+    opacity: 1;
+}
+
+/* Animación para el menú de navegación */
+.navbar-menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.navbar-menu li a:hover::after,
+.navbar-menu li.active a::after {
+    width: 100%;
+}
+
+/* Animación para las tarjetas de servicios */
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Animación para las tarjetas de valores */
+.value-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Animación para las tarjetas de equipo */
+.team-member {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.member-image img {
+    transition: transform 0.5s ease;
+}
+
+.team-member:hover .member-image img {
+    transform: scale(1.1);
+}
+
+/* Animación para las tarjetas de propiedades */
+.property-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.property-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.property-image img {
+    transition: transform 0.5s ease;
+}
+
+.property-card:hover .property-image img {
+    transform: scale(1.1);
+}
+
+/* Animación para las tarjetas de razones */
+.reason-card {
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.reason-card:hover {
+    transform: translateY(-10px);
+    background-color: var(--primary-color);
+    color: var(--light-color);
+}
+
+.reason-icon {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.reason-card:hover .reason-icon {
+    background-color: var(--secondary-color);
+    color: var(--light-color);
+}
+
+/* Animación para los iconos sociales */
+.social-icons a {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: translateY(-5px);
+    background-color: var(--primary-color);
+}
+
+/* Animación para los enlaces del footer */
+.footer-links ul li a {
+    transition: color 0.3s ease, padding 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: var(--primary-color);
+    padding-left: 5px;
+}

@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes - NAIKAL</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos específicos para la página de clientes */
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        /* Rediseña las tarjetas */
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            align-items: stretch;
+        }
+
+        .client-logo {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 220px;
+            height: auto;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0.5rem 1rem;
+            max-height: 120px;
+        }
+
+        .client-logo img {
+            max-width: 100%;
+            max-height: 80px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .client-name {
+            text-align: center;
+            padding: 0.8rem 0.5rem;
+            margin-top: auto;
+            width: 100%;
+            background-color: rgba(var(--primary-rgb), 0.05);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .client-name p {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--dark-color);
+            line-height: 1.3;
+            display: -webkit-box;
+            --webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .client-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .client-logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .client-logo:hover .client-name {
+            background-color: rgba(var(--primary-rgb), 0.1);
+        }
+
+        @media (min-width: 768px) {
+            .clients-grid {
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 2rem;
+            }
+
+            .client-logo {
+                min-height: 240px;
+            }
+
+            .client-name p {
+                font-size: 1rem;
+            }
+        }
+
+        .client-logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .client-logo:hover .client-name {
+            background-color: rgba(var(--primary-rgb), 0.1);
+        }
+
+        .case-studies {
+            margin: 2rem 0;
+            background-color: #ffffff;
+        }
+
+        .case-study {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            .case-study {
+                flex-direction: row;
+            }
+        }
+
+        .case-study-image {
+            flex: 1;
+            min-height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .case-study-content {
+            flex: 2;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .case-study-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .case-study-content .results {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .result-item {
+            background-color: var(--light-bg);
+            padding: 0.5rem;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .result-item h4 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .client-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background-color: var(--light-bg);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .testimonial-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            position: relative;
+        }
+
+        .testimonial-card:before {
+            content: '\201C';
+            font-family: Georgia, serif;
+            font-size: 5rem;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            color: rgba(var(--primary-rgb), 0.1);
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-content p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .client-info img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+
+        .client-details h4 {
+            margin: 0;
+            color: var(--primary-color);
+        }
+
+        .client-details p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .cta-section .container {
+            padding: 10px 0;
+            background: linear-gradient(70deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+            text-align: center;
+            border-radius: 10px;
+            /* Añade esta línea */
+        }
+
+        .cta-content .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .cta-content,
+        .container h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .cta-content,
+        .container p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Centrado solo en móvil */
+        @media (max-width: 768px) {
+            .cta-content, .container .btn-primary {
+                /* Selecciona el botón con clase "primary" */
+                display: block;
+                margin: 0 auto;
+                text-align: center;
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Barra lateral -->
+    <div class="sidebar">
+        <a href="inmobiliaria.html" class="sidebar-link">
+            <i class="fas fa-building"></i> <!-- Ejemplo con Font Awesome -->
+        </a>
+    </div>
+
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <!-- Barra de navegación -->
+        <nav class="navbar">
+            <div class="navbar-logo">
+                <img src="images/Logotipo_Completo.png" alt="NAIKAL" class="logo">
+            </div>
+            <ul class="navbar-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li class="active"><a href="clientes.html">Clientes</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <div class="navbar-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+        <!-- Encabezado de página -->
+        <div class="page-header">
+            <h1>Nuestros Clientes</h1>
+            <p>Empresas e instituciones que confían en NAIKAL</p>
+        </div>
+
+        <!-- Sección de confianza -->
+        <section class="trust-section">
+            <div class="container">
+                <h2 class="section-title">Confían en nosotros</h2>
+                <p class="section-description">En NAIKAL, nos enorgullece trabajar con organizaciones líderes en
+                    diversos sectores. Nuestra dedicación a la excelencia y el compromiso con resultados tangibles nos
+                    han convertido en socios estratégicos para empresas e instituciones que buscan soluciones
+                    innovadoras y eficientes.</p>
+
+                <!-- Filtros de clientes -->
+                <div class="client-filters">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="industrial">Sector Industrial</button>
+                    <button class="filter-btn" data-filter="educativo">Sector Educativo</button>
+                    <button class="filter-btn" data-filter="gobierno">Gobierno</button>
+                    <button class="filter-btn" data-filter="comercial">Sector Comercial</button>
+                </div>
+
+                <!-- Grid de logos de clientes -->
+                <div class="clients-grid">
+                    <div class="clients-grid">
+                        <div class="client-logo" data-category="gobierno">
+                            <div class="logo-container">
+                                <img src="images/Secretaria_Guanjuato.png" alt="FIDEA">
+                            </div>
+                            <div class="client-name">
+                                <p>Fideicomiso Irrevocable de Inversión y Administración para la Ejecución de Programas
+                                    Hidroagrícolas (FIDEA)</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="gobierno">
+                            <div class="logo-container">
+                                <img src="images/Educacion_Guanajuato.png" alt="FIDEFRIJOL">
+                            </div>
+                            <div class="client-name">
+                                <p>Fideicomiso del Fondo de Apoyo Especial a la Inversión en Frijol (FIDEFRIJOL)</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="gobierno">
+                            <div class="logo-container">
+                                <img src="images/Tarimoro_Guanajato.jpg" alt="Tarimoro">
+                            </div>
+                            <div class="client-name">
+                                <p>Municipio de Tarimoro (Guanajuato)</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="gobierno">
+                            <div class="logo-container">
+                                <img src="images/Santiago_Maravatío.gif" alt="Santiago_Maravatío">
+                            </div>
+                            <div class="client-name">
+                                <p>Municipio de Santiago Maravatío</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="gobierno">
+                            <div class="logo-container">
+                                <img src="images/Zinapécuaro.png" alt="Zinapécuaro">
+                            </div>
+                            <div class="client-name">
+                                <p>Municipio de Zinapécuaro (Michoacán)</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="gobierno">
+                            <div class="logo-container">
+                                <img src="images/Secretaria_Guanjuato.png" alt="Zinapécuaro">
+                            </div>
+                            <div class="client-name">
+                                <p>Secretaría de Educación de Guanajuato</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="educativo">
+                            <div class="logo-container">
+                                <img src="images/Politecnica_Guanajuato.png" alt="Zinapécuaro">
+                            </div>
+                            <div class="client-name">
+                                <p>Universidad Politécnica de Guanajuato</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="educativo">
+                            <div class="logo-container">
+                                <img src="images/UPJR.jpg" alt="Zinapécuaro">
+                            </div>
+                            <div class="client-name">
+                                <p>Universidad Politécnica de Juventino Rosas</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="educativo">
+                            <div class="logo-container">
+                                <img src="images/Bicentenario_Guanajuato.png" alt="Bicentenario">
+                            </div>
+                            <div class="client-name">
+                                <p>Universidad Politécnica del Bicentenario</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="educativo">
+                            <div class="logo-container">
+                                <img src="images/Penjamo_Guanajuato.png" alt="Penjamo">
+                            </div>
+                            <div class="client-name">
+                                <p>Universidad Politécnica de Pénjamo</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="educativo">
+                            <div class="logo-container">
+                                <img src="images/Bajio.jpg" alt="Bajio">
+                            </div>
+                            <div class="client-name">
+                                <p>Universidad Tecnológica Laja Bajío</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="educativo">
+                            <div class="logo-container">
+                                <img src="images/Suroeste.jpg" alt="Suroeste">
+                            </div>
+                            <div class="client-name">
+                                <p>Universidad Tecnológica del Suroeste de Guanajuato</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="educativo">
+                            <div class="logo-container">
+                                <img src="images/Allende.png" alt="Allende">
+                            </div>
+                            <div class="client-name">
+                                <p>Universidad Tecnológica de San Miguel de Allende</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="educativo">
+                            <div class="logo-container">
+                                <img src="images/Salamanca.jpg" alt="Salamanca">
+                            </div>
+                            <div class="client-name">
+                                <p>Universidad Tecnológica de Salamanca</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="educativo">
+                            <div class="logo-container">
+                                <img src="images/Intercultural.jpg" alt="Intercultural">
+                            </div>
+                            <div class="client-name">
+                                <p>Universidad Intercultural del Estado de Guanajuato</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="educativo">
+                            <div class="logo-container">
+                                <img src="images/Abierta.jpg" alt="Abierta">
+                            </div>
+                            <div class="client-name">
+                                <p>Preparatoria Abierta y a Distancia de Guanajuato</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="comercial">
+                            <div class="logo-container">
+                                <img src="images/MedVal.webp" alt="MedVal">
+                            </div>
+                            <div class="client-name">
+                                <p>MedVal S.A. de C.V</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="industrial">
+                            <div class="logo-container">
+                                <img src="images/MEDCO.png" alt="MEDCO">
+                            </div>
+                            <div class="client-name">
+                                <p>Medrano Constructores, S.A. de C.V</p>
+                            </div>
+                        </div>
+                        <div class="client-logo" data-category="industrial">
+                            <div class="logo-container">
+                                <img src="images/IMEX.png" alt="IMEX">
+                            </div>
+                            <div class="client-name">
+                                <p>IMEX Bioware, S.A. de C.V</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <!-- Casos de éxito -->
+        <section class="case-studies">
+            <div class="container">
+                <h2 class="section-title">Casos de éxito</h2>
+                <p class="section-description">Descubra cómo hemos ayudado a nuestros clientes a alcanzar sus objetivos
+                    a través de soluciones personalizadas y servicios de calidad.</p>
+
+                <!-- Caso de éxito 1 -->
+                <div class="case-study">
+                    <div class="case-study-image"
+                        style="background-image: url('https://via.placeholder.com/800x600?text=Caso+Éxito+1')"></div>
+                    <div class="case-study-content">
+                        <h3>Modernización de la Biblioteca Central Universitaria</h3>
+                        <p>La Universidad Nacional nos confió el proyecto de modernización integral de su biblioteca
+                            central, que incluía la renovación del equipamiento, la implementación de sistemas
+                            tecnológicos avanzados y la reorganización de espacios para mejorar la experiencia de los
+                            usuarios.</p>
+
+                        <div class="results">
+                            <div class="result-item">
+                                <h4>30%</h4>
+                                <p>Aumento en el uso de la biblioteca</p>
+                            </div>
+                            <div class="result-item">
+                                <h4>50%</h4>
+                                <p>Reducción en tiempos de búsqueda</p>
+                            </div>
+                            <div class="result-item">
+                                <h4>100%</h4>
+                                <p>Satisfacción del personal</p>
+                            </div>
+                        </div>
+
+                        <p>"La transformación ha sido extraordinaria. No solo hemos modernizado nuestras instalaciones,
+                            sino que hemos creado un espacio que inspira el aprendizaje y la investigación." - Dra.
+                            Elena Ramírez, Directora de Biblioteca</p>
+                    </div>
+                </div>
+
+                <!-- Caso de éxito 2 -->
+                <div class="case-study">
+                    <div class="case-study-image"
+                        style="background-image: url('https://via.placeholder.com/800x600?text=Caso+Éxito+2')"></div>
+                    <div class="case-study-content">
+                        <h3>Optimización de procesos industriales para Manufacturas ABC</h3>
+                        <p>Desarrollamos e implementamos un programa integral de consultoría y capacitación para
+                            optimizar los procesos productivos de Manufacturas ABC, incluyendo la instalación de
+                            maquinaria especializada y la formación del personal.</p>
+
+                        <div class="results">
+                            <div class="result-item">
+                                <h4>25%</h4>
+                                <p>Incremento en productividad</p>
+                            </div>
+                            <div class="result-item">
+                                <h4>18%</h4>
+                                <p>Reducción de costos operativos</p>
+                            </div>
+                            <div class="result-item">
+                                <h4>40%</h4>
+                                <p>Disminución en tiempos de producción</p>
+                            </div>
+                        </div>
+
+                        <p>"La intervención de NAIKAL transformó completamente nuestra operación. Su enfoque integral y
+                            personalizado nos permitió alcanzar niveles de eficiencia que no creíamos posibles." -
+                            Ricardo Jiménez, Director de Operaciones</p>
+                    </div>
+                </div>
+
+                <!-- Caso de éxito 3 -->
+                <div class="case-study">
+                    <div class="case-study-image"
+                        style="background-image: url('https://via.placeholder.com/800x600?text=Caso+Éxito+3')"></div>
+                    <div class="case-study-content">
+                        <h3>Implementación de sistema de gestión documental para el Ministerio de Educación</h3>
+                        <p>Diseñamos e implementamos un sistema integral de gestión documental para el Ministerio de
+                            Educación, que incluía equipamiento especializado, software de gestión y capacitación del
+                            personal administrativo.</p>
+
+                        <div class="results">
+                            <div class="result-item">
+                                <h4>70%</h4>
+                                <p>Reducción en tiempos de búsqueda</p>
+                            </div>
+                            <div class="result-item">
+                                <h4>90%</h4>
+                                <p>Digitalización de archivos</p>
+                            </div>
+                            <div class="result-item">
+                                <h4>60%</h4>
+                                <p>Ahorro en espacio físico</p>
+                            </div>
+                        </div>
+
+                        <p>"El sistema implementado por NAIKAL ha revolucionado nuestra forma de trabajar. La eficiencia
+                            en la gestión documental nos permite ahora dedicar más recursos a nuestra misión principal:
+                            mejorar la educación." - Carlos Mendoza, Director de Administración</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonios -->
+        <section class="client-testimonials">
+            <div class="container">
+                <h2 class="section-title">Testimonios de clientes</h2>
+                <p class="section-description">Descubra lo que nuestros clientes dicen sobre su experiencia trabajando
+                    con NAIKAL.</p>
+
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"La consultoría estratégica proporcionada por NAIKAL nos permitió identificar
+                                oportunidades de mejora que habían pasado desapercibidas durante años. Su enfoque
+                                metódico y profesional marcó una diferencia significativa en nuestro rendimiento."</p>
+                            <div class="client-info">
+                                <div class="client-details">
+                                    <h4>Fernando Méndez</h4>
+                                    <p>Director Financiero, Grupo Industrial XYZ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"El programa de capacitación diseñado por NAIKAL para nuestro equipo superó todas
+                                nuestras expectativas. No solo mejoró las habilidades técnicas de nuestro personal, sino
+                                que también fortaleció su compromiso y motivación."</p>
+                            <div class="client-info">
+                                <div class="client-details">
+                                    <h4>Claudia Rodríguez</h4>
+                                    <p>Gerente de Recursos Humanos, Corporación DEF</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"La colección de material bibliográfico seleccionada por NAIKAL ha enriquecido
+                                enormemente nuestra biblioteca. Su conocimiento del mercado editorial y su capacidad
+                                para entender nuestras necesidades específicas fueron fundamentales."</p>
+                            <div class="client-info">
+                                <div class="client-details">
+                                    <h4>Dr. Javier Morales</h4>
+                                    <p>Director de Biblioteca, Instituto Tecnológico</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"La auditoría realizada por NAIKAL nos permitió identificar áreas críticas de mejora y
+                                establecer un plan de acción efectivo. Su profesionalismo y rigor metodológico fueron
+                                impresionantes."</p>
+                            <div class="client-info">
+                                <div class="client-details">
+                                    <h4>María González</h4>
+                                    <p>CEO, Empresas JKL</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"El equipamiento para nuestra biblioteca adquirido a través de NAIKAL ha transformado
+                                completamente nuestro espacio. La calidad de los productos y el servicio de instalación
+                                fueron excepcionales."</p>
+                            <div class="client-info">
+                                <div class="client-details">
+                                    <h4>Roberto Sánchez</h4>
+                                    <p>Director, Biblioteca Municipal</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"La maquinaria adquirida a NAIKAL ha superado nuestras expectativas en términos de
+                                rendimiento y durabilidad. El servicio post-venta y la capacitación proporcionada a
+                                nuestro personal han sido fundamentales."</p>
+                            <div class="client-info">
+                                <img src="https://via.placeholder.com/100x100?text=Cliente" alt="Cliente">
+                                <div class="client-details">
+                                    <h4>Luis Ramírez</h4>
+                                    <p>Gerente de Planta, Tecnologías GHI</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>¿Listo para ser nuestro próximo caso de éxito?</h2>
+                <p>Contáctenos hoy mismo para descubrir cómo podemos ayudarle a alcanzar sus objetivos.</p>
+                <a href="contacto.html" class="btn-primary">Contáctenos</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <!-- Contacto horizontal -->
+                <div class="footer-contact">
+                    <span class="social-title">Contactos</span>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+52 55 1234 5678</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>contacto@naikal.mx</span>
+                    </div>
+                </div>
+
+                <!-- Redes sociales horizontal -->
+                <div class="footer-social">
+                    <span class="social-title">Síguenos</span>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 NAIKAL. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script>
+        // Script para filtrar clientes por categoría
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const clientLogos = document.querySelectorAll('.client-logo');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const filter = this.getAttribute('data-filter');
+
+                    // Actualizar botones activos
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Filtrar logos
+                    clientLogos.forEach(logo => {
+                        if (filter === 'all' || logo.getAttribute('data-category') === filter) {
+                            logo.style.display = 'flex';
+                        } else {
+                            logo.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
