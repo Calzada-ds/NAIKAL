@@ -190,8 +190,6 @@ img {
 }
 
 /* Hover desktop opcional (puedes eliminar si solo quieres toggle con clic) */
-
-/* Hover desktop opcional */
 @media (hover: hover) and (pointer: fine) {
   .custom-sidebar:hover {
     width: 200px;
@@ -206,20 +204,49 @@ img {
 /* Mobile */
 @media (max-width: 768px) {
   .custom-sidebar {
-    width: 60px;
-    padding: 10px 0;
-    border-radius: 50%;
+    width: 200px;               /* ancho suficiente para texto e icono */
+    padding: 10px 20px;         /* espacio para que no esté pegado */
+    border-radius: 15px;
     bottom: 20px;
     top: auto;
     left: 20px;
     transform: none;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;    /* alinea icono y texto a la izquierda */
+    max-height: 90vh;
+    overflow: auto;
+    cursor: default;            /* ya no es solo botón */
+    transition: width 0.3s ease, padding 0.3s ease;
+    z-index: 1000;
   }
 
-  .custom-sidebar.expanded {
-    width: 200px;
-    border-radius: 15px;
-    padding-left: 20px;
+  /* Mostrar siempre el texto */
+  .custom-sidebar .custom-sidebar-text {
+    display: inline;
+    font-size: 12.5px;
+    white-space: nowrap;       /* para que no se rompa el texto */
+  }
+
+  .custom-sidebar-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 80%;               /* ocupa todo el ancho */
+    padding: 10px 0;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .custom-sidebar-icon i {
+    font-size: 24px;
+    min-width: 24px;
+    text-align: center;
   }
 }
 
