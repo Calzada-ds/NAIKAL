@@ -190,6 +190,8 @@ img {
 }
 
 /* Hover desktop opcional (puedes eliminar si solo quieres toggle con clic) */
+
+/* Hover desktop opcional */
 @media (hover: hover) and (pointer: fine) {
   .custom-sidebar:hover {
     width: 200px;
