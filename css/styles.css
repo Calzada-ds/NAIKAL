@@ -249,8 +249,53 @@ img {
     text-align: center;
   }
 }
+/* Para pantallas pequeñas, hasta 480px */
+@media (max-width: 480px) {
+  .custom-sidebar {
+    width: 180px;              /* un poco más estrecho para pantallas pequeñas */
+    padding: 8px 15px;
+    border-radius: 15px;
+    bottom: 15px;
+    top: auto;
+    left: 15px;
+    transform: none;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-height: 90vh;
+    overflow: auto;
+    cursor: default;
+    transition: width 0.3s ease, padding 0.3s ease;
+    z-index: 1000;
+  }
 
+  .custom-sidebar .custom-sidebar-text {
+    display: inline;
+    font-size: 11px;           /* texto un poco más pequeño para pantallas muy chicas */
+    white-space: nowrap;
+  }
 
+  .custom-sidebar-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    width: 80%;
+    padding: 8px 0;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .custom-sidebar-icon i {
+    font-size: 22px;           /* ícono un poco más pequeño */
+    min-width: 22px;
+    text-align: center;
+  }
+}
 
 
 /* ---------------------------------------------------- Barra de navegación -------------------------------------------*/
